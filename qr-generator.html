@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>QR Code Generator — GK Realty</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #f5f5f0;
+    min-height: 100vh;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  h1 { color: #1a1f26; font-size: 24px; }
+  .controls {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 500px;
+  }
+  label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #333; }
+  input, select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+  button {
+    background: #c9a961;
+    color: #0f1419;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 8px;
+  }
+  button:hover { background: #a8863f; }
+  .qr-card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    text-align: center;
+    border: 3px solid #c9a961;
+  }
+  .qr-card .brand {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #c9a961;
+    margin-bottom: 4px;
+  }
+  .qr-card .tag {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  #qrcode { display: flex; justify-content: center; margin: 16px 0; }
+  .qr-card .scan-text {
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1f26;
+  }
+  .qr-card .sub {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+  }
+  .hint { font-size: 13px; color: #666; margin-top: 8px; }
+</style>
+</head>
+<body>
+  <h1>🎨 QR Code Generator — GK Realty</h1>
+
+  <div class="controls">
+    <label for="url">Landing Page URL</label>
+    <input id="url" type="text" value="" placeholder="https://yourname.github.io/..." />
+    <p class="hint">👉 Host <strong>index.html</strong> on GitHub Pages / Netlify and paste the URL here.</p>
+
+    <label for="size" style="margin-top:12px">QR Size (px)</label>
+    <select id="size">
+      <option value="300">300 × 300 (Small)</option>
+      <option value="500" selected>500 × 500 (Medium)</option>
+      <option value="800">800 × 800 (Large — Print)</option>
+      <option value="1200">1200 × 1200 (Extra Large — Banner)</option>
+    </select>
+
+    <button onclick="generate()">Generate QR</button>
+    <button onclick="downloadQR()">⬇ Download PNG</button>
+    <button onclick="window.print()">🖨 Print</button>
+  </div>
+
+  <div class="qr-card" id="card">
+    <div class="brand">GK Realty</div>
+    <div class="tag">Builder &amp; Developer</div>
+    <div id="qrcode"></div>
+    <div class="scan-text">📱 Scan to Connect</div>
+    <div class="sub">WhatsApp • Instagram • Call</div>
+  </div>
+
+<script>
+  function generate() {
+    const url = document.getElementById('url').value.trim();
+    const size = parseInt(document.getElementById('size').value);
+    if (!url) { alert('Please enter the landing page URL first'); return; }
+    const container = document.getElementById('qrcode');
+    container.innerHTML = '';
+    const canvas = document.createElement('canvas');
+    container.appendChild(canvas);
+    QRCode.toCanvas(canvas, url, {
+      width: size,
+      margin: 2,
+      errorCorrectionLevel: 'H',
+      color: { dark: '#0f1419', light: '#ffffff' }
+    }, function(err) {
+      if (err) alert('Error: ' + err);
+    });
+  }
+  function downloadQR() {
+    const canvas = document.querySelector('#qrcode canvas');
+    if (!canvas) { alert('Generate QR first'); return; }
+    const link = document.createElement('a');
+    link.download = 'GK-Realty-QR.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  }
+  // Auto-generate with placeholder
+  document.getElementById('url').value = 'https://wa.me/919898937565';
+  generate();
+</script>
+</body>
+</html>
