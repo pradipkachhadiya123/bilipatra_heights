@@ -203,34 +203,22 @@
 
   /* Logo card */
   .logo-card {
-    background: #ffffff;
-    border-radius: 24px;
-    padding: 14px 18px;
     display: inline-block;
     margin: 14px auto 0;
-    box-shadow:
-      0 20px 60px rgba(0,0,0,0.5),
-      0 0 0 1px rgba(212,165,116,0.2),
-      inset 0 1px 0 rgba(255,255,255,0.8);
     position: relative;
     z-index: 2;
     animation: fadeUp 0.8s ease-out, float 5s ease-in-out 0.8s infinite;
-  }
-  .logo-card::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    background: linear-gradient(135deg, var(--gold), transparent, var(--gold));
-    border-radius: 26px;
-    z-index: -1;
-    opacity: 0.3;
-    filter: blur(10px);
+    filter: drop-shadow(0 20px 40px rgba(212,165,116,0.25)) drop-shadow(0 0 20px rgba(0,0,0,0.4));
   }
   .logo-card img {
-    max-width: 200px;
-    width: min(52vw, 200px);
-    max-height: 130px;
+    max-width: 220px;
+    width: min(58vw, 220px);
+    max-height: 150px;
     height: auto;
+    border-radius: 20px;
+    background: white;
+    padding: 10px 16px;
+    display: block;
   }
   .logo-wrap { text-align: center; position: relative; z-index: 2; }
 
@@ -852,18 +840,18 @@
   }
   .footer-logo-wrap {
     display: inline-block;
-    padding: 12px 18px;
-    background: #ffffff;
-    border-radius: 16px;
     margin-bottom: 14px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
   }
   .footer-logo-wrap img {
-    max-width: 140px;
-    width: 45vw;
-    max-height: 80px;
+    max-width: 160px;
+    width: 50vw;
+    max-height: 100px;
     height: auto;
     display: block;
+    background: white;
+    border-radius: 12px;
+    padding: 10px 16px;
   }
   .footer .tagline {
     font-size: 12px;
@@ -1023,7 +1011,7 @@
 
     <div class="logo-wrap reveal reveal-1">
       <div class="logo-card">
-        <img src="bilipatra-logo.jpg?v=2" alt="Bilipatra Heights" />
+        <img src="bilipatra-logo.jpg?v=3" alt="Bilipatra Heights" />
       </div>
     </div>
 
@@ -1109,7 +1097,7 @@
   <div class="footer">
     <div class="by-label">A PROJECT BY</div>
     <div class="footer-logo-wrap">
-      <img src="GK-Realty-logo.png?v=2" alt="GK Realty" />
+      <img src="GK-Realty-logo.png?v=3" alt="GK Realty" />
     </div>
     <div class="tagline">Premium Builders &amp; Developers</div>
     <div class="address">Surat · Gujarat</div>
